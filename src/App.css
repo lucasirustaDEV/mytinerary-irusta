@@ -1,4 +1,25 @@
-#root {
+/* .app-layout{
+  
+  min-height: 100vh;
+  
+  display: flex;
+  flex-direction: column;
+
+}
+
+.app-header, .app-footer{
+  height: 15vh;
+  background-color: rgb(228, 134, 134);
+}
+
+.app-main{
+  flex-grow: 1;
+
+  display: grid;
+  place-content: center;
+} */
+
+/* #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
@@ -39,4 +60,4 @@
 
 .read-the-docs {
   color: #888;
-}
+} */
