@@ -10,7 +10,9 @@ export default function LayoutMain( { children }) {
       <header className="container app-header">
         <Header/>
       </header>
-      { children }
+      <main className='app-main'>
+        { children }
+      </main>
       <footer className="container app-footer">
         <Footer/>
       </footer>

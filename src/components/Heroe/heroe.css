@@ -5,7 +5,8 @@
     background-image: url("https://www.cronista.com/files/image/300/300145/5ffe0f8143db2.jpg");
     background-size: cover;
     background-position: center;
-    min-height: 60vh;
+    /* min-height: 60vh; */
+    height: 90vh;
     display: flex;
     justify-content: center;
 }

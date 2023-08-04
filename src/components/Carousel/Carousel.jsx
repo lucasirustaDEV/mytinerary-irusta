@@ -1,9 +1,10 @@
 import React from 'react'
 import CityCard from '../Card/CityCard';
+import cities from "../../data/cities.js"
 
 const Carousel = () => {
 
-  const cities = [
+/*   const cities = [
         {
           _id: "001",
           name: "París",
@@ -76,7 +77,7 @@ const Carousel = () => {
                   text: "Oh la la!",
                   image: "https://images.unsplash.com/photo-1560969184-10fe8719e047?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
                 },
-  ];
+  ]; */
 
   return (
     <section className="pt-5 pb-5">
