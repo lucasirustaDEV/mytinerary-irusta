@@ -4,14 +4,13 @@ import Footer from '../../components/Footer/Footer'
 import Heroe from '../../components/Heroe/Heroe'
 import Carousel from '../../components/Carousel/Carousel'
 
-export default function LayoutMain() {
+export default function LayoutMain( { children }) {
   return (
     <div className="app-layout">
       <header className="container app-header">
         <Header/>
       </header>
-      <Heroe/>
-      <Carousel/>
+      { children }
       <footer className="container app-footer">
         <Footer/>
       </footer>
