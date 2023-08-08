@@ -5,7 +5,7 @@ const CityCard = ({ destination }) => {
   return (
     <div className="col-md-3 mb-3">
       <div className="card">
-        <img className="img-fluid" alt="100%x280" src={destination.image}/>
+        <img className="img-fluid" alt="" src={destination.image}/>
         <div className="card-body">
             <h4 className="card-title">{destination.name}</h4>
             <p className="card-text">{destination.text}</p>
