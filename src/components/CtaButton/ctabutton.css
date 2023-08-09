@@ -1,0 +1,20 @@
+.cta-button {
+    display: inline-block;
+    background-color: #0081E6;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    margin-top: 30px;
+    transition: background-color 0.3s ease;
+    border: 3px solid #0081E6;
+}
+
+.cta-button:hover {
+    color: #0081E6 !important;
+    background: transparent;
+    border: 3px solid #0081E6;
+    transform: scale(1.1);
+}

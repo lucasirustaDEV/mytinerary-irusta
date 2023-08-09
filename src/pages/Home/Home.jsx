@@ -6,13 +6,13 @@ import CarouselNew from '../../components/Carousel/CarouselNew'
 
 const Home = () => {
   return (
-    <LayoutMain>
-      {/* <h1>PRUEBA CHILDREN</h1> */}
+    <>
       <Heroe/>
       
       <Carousel/>
       <CarouselNew/>
-    </LayoutMain>
+
+    </>
   )
 }
 

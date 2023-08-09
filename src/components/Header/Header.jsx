@@ -1,5 +1,12 @@
 import React from 'react'
 import "./header.css";
+import SiteLink from '../SiteLink/SiteLink';
+import sitelinks from "../../data/sitelinks.js"
+
+/* const siteLink = [
+  { id: "1", title: "Home", slink: "link", active: true },
+  { id: "1", title: "Cities", slink: "link", active: false },
+] */
 
 const Header = () => {
   return (
@@ -14,9 +21,14 @@ const Header = () => {
 
   
               <div className="d-flex ms-auto">
-                  <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">Home</a></li>
-                    <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">Cities</a></li>
+                  <ul className="navbar-nav me-auto mb-2 mb-lg-0 gap-3">
+
+                    {sitelinks.map((slink) => (
+                      <SiteLink slink={slink} />
+                    ))}
+
+                    {/* <li className="nav-item"><a href="#" className="nav-link px-2">Home</a></li>
+                    <li className="nav-item"><a href="#" className="nav-link px-2">Cities</a></li> */}
                     <li><button className="btn btn-success"><i className="fa fa-user"></i>  Login</button></li>
                   </ul>
 
