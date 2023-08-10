@@ -20,6 +20,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+h3 {
+  color: aliceblue;
+}
 
 .app-layout {
   height: 100vh;
@@ -35,3 +38,27 @@
 
 }
 
+.nav-link:hover {
+  background-color: #0081E6 !important;
+  color: white !important;
+}
+.active {
+  --bs-nav-pills-link-active-bg: #0081E6 !important;
+  color: rgb(255, 255, 255) !important;
+}
+.card {
+  border-color: #0081E6;
+}
+.card:hover{
+  border-color: #52AA5E;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px #52AA5E(217,3,104,1) !important;
+  
+}
+.btn-primary {
+  background-color: #0081E6;
+  border-color: #0081E6;
+}
+.btn-primary:hover {
+  background-color: #52AA5E;
+  border-color: #52AA5E;
+}

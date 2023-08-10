@@ -14,7 +14,7 @@
 
 .cta-button:hover {
     color: #0081E6 !important;
-    background: transparent;
+    background-color: #fff;
     border: 3px solid #0081E6;
     transform: scale(1.1);
 }

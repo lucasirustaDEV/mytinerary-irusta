@@ -5,18 +5,16 @@ import "./footer.css"
 
 const Footer = () => {
   return (
+    <footer className="d-flex flex-wrap justify-content-between align-items-center py-3">
+      <p className="col-md-4 mb-0 myt">&copy; 2023 MyTinerary</p>
+      <ul className="nav col-md-4 justify-content-end">
 
-    <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-    <p className="col-md-4 mb-0 myt">&copy; 2023 MyTinerary</p>
+        {sitelinks.map((slink) => (
+          <SiteLink key={slink.id} slink={slink} />
+        ))}
 
-    <ul className="nav col-md-4 justify-content-end">
-
-      {sitelinks.map((slink) => (
-        <SiteLink slink={slink} />
-      ))}
-
-    </ul>
-  </footer>
+      </ul>
+    </footer>
   )
 }
 

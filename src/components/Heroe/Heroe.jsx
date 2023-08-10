@@ -9,7 +9,7 @@ export default function Heroe() {
         <h1>FIND THE PERFECT DESTINATION</h1>
         <p>Our app will help you find the perfect path for your next trip. With an easy-to-use interface and a host of itinerary options, planning your next trip has never been easier.</p>
         {/* <a href="#" className="cta-button">Make Your Dreams Come True!</a> */}
-        <CtaButton title="Make Your Dreams Come True!" slink="#"/>
+        <CtaButton title="Make Your Dreams Come True!" slink="/cities"/>
       </div>
     </section>
   )
