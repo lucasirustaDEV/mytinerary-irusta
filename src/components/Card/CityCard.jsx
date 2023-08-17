@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link as Anchor } from "react-router-dom"
 
 const CityCard = ({ destination }) => {
   /* console.log(destination) */
@@ -9,7 +10,8 @@ const CityCard = ({ destination }) => {
         <div className="card-body">
             <h4 className="card-title">{destination.name}</h4>
             <p className="card-text">{destination.text}</p>
-            <p><a className="btn btn-lg btn-primary" href="#">Go!</a></p>
+            {/* <p><a className="btn btn-lg btn-primary" href="#">Go!</a></p> */}
+            <Anchor className="btn btn-lg btn-primary" to={'/city/' + destination._id}>Go!</Anchor>
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@ import './error404.css'
 const Error404 = () => {
   return (
     <div className="error-image">
-      <div class="error-text">
+      <div className="error-text">
         <h1>You went too far...</h1>
       </div>
     </div>
