@@ -1,4 +1,5 @@
 import React from 'react'
+import './city.css'
 import { useParams } from 'react-router-dom'
 import { useState, useEffect } from "react"
 import axios from 'axios'
@@ -18,14 +19,19 @@ const City = () => {
 
   return (
     <>
-    <Banner imageURL={city.image} />
-    <section className="py-5 text-center container bg-light mt-0">
-      <div className="row py-lg-5">
-        <div className="col-lg-6 col-md-8 mx-auto">
-          <h1 className="fw-light">City {city.name}</h1>
+      <section className="city">
+        <Banner imageURL={city.image} />
+        <div className="py-5 text-center container text-container">
+          <div className="row py-lg-4 mask-custom">
+            <div className="col-lg-8 col-md-10 mx-auto">
+              <h1 className="fw-light">{city.name}</h1>
+              <h4 className="fw-light">Culture: {city.text}</h4>
+              <h4 className="fw-light">Country: {city.country}</h4>
+              <h4 className="fw-light">Currency: {city.currency}</h4>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
     </>
   )
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import "./cities.css"
 //import cities from "../../data/cities.js"
 import CityCard from '../../components/Card/CityCard'
@@ -8,6 +8,8 @@ import Banner from '../../components/Banner/Banner'
 
 const Cities = () => {
   const bannerImg = "https://images.unsplash.com/photo-1610995195985-7229a1409d4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+
+  const inputRef = useRef(null)
 
   const [searchTerm, setSearchTerm] = useState('')
   const [searchResults, setSearchResults] = useState([])
@@ -36,32 +38,39 @@ const Cities = () => {
     handleSearch(query)
   }
 
+  const handleInputFocus = () => {
+    inputRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
   return (
-  <>
-    <Banner imageURL={bannerImg} />
-    <div className="container col-md-4 mt-5">
-      <div className="input-group">
-        <input className="form-control py-2 rounded-pill mr-1 pr-5" type="search" placeholder="Search city..." value={searchTerm} onChange={handleChange}/>
+    <>
+      <div className="search-city">
+        <Banner imageURL={bannerImg} />
+        <div className="container col-md-4 mt-3 search-input">
+          <div className="input-group">
+            <input className="form-control py-2 rounded-pill mr-1 pr-5" type="search" placeholder="Search city..." 
+              value={searchTerm} onChange={handleChange} ref={inputRef} onFocus={handleInputFocus}/>
+          </div>
+        </div>
       </div>
-    </div>
-    <div className="col-12 mt-3 container">
-      <div className="row">
-        {searchResults.length === 0 ? (
-          <section className="py-5 text-center container bg-light ">
-            <div className="row py-lg-5">
-              <div className="col-lg-6 col-md-8 mx-auto">
-                <h1 className="fw-light">No results found</h1>
+      <div className="col-12 mt-3 container">
+        <div className="row">
+          {searchResults.length === 0 ? (
+            <section className="py-5 text-center container">
+              <div className="row py-lg-5">
+                <div className="col-lg-6 col-md-8 mx-auto">
+                  <h1 className="fw-light">No results found</h1>
+                </div>
               </div>
-            </div>
-          </section>
-        ) : (
-          searchResults.map((city, index) => (
-          <CityCard key={index} destination={city} />
-          ))
-        )}
+            </section>
+          ) : (
+            searchResults.map((city, index) => (
+            <CityCard key={index} destination={city} />
+            ))
+          )}
+        </div>
       </div>
-    </div>
-  </>
+    </>
   )
 }
 
