@@ -48,7 +48,7 @@ const Cities = () => {
         <Banner imageURL={bannerImg} />
         <div className="container col-md-4 mt-3 search-input">
           <div className="input-group">
-            <input className="form-control py-2 rounded-pill mr-1 pr-5" type="search" placeholder="Search city..." 
+            <input className="form-control py-2 rounded-pill" type="search" placeholder="Search city..." 
               value={searchTerm} onChange={handleChange} ref={inputRef} onFocus={handleInputFocus}/>
           </div>
         </div>

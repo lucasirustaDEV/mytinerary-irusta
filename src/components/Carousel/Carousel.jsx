@@ -1,9 +1,19 @@
 import React from 'react'
 import CityCard from '../Card/CityCard'
-import cities from "../../data/cities.js"
+//import cities from "../../data/cities.js"
 import { useState, useEffect } from "react"
+import axios from 'axios'
 
 const Carousel = () => {
+
+  const [cities, setCities] = useState([])
+
+  useEffect(()=>{
+    axios('http://localhost:3000/api/cities/page/?page=1&limit=12')
+      .then(res => {
+        setCities(res.data.response)
+      })
+  },[])
 
   const [counter, setCounter] = useState(0);
 

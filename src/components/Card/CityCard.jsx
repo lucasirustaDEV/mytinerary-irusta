@@ -1,16 +1,15 @@
 import React from 'react'
 import { Link as Anchor } from "react-router-dom"
+import './citycard.css'
 
 const CityCard = ({ destination }) => {
-  /* console.log(destination) */
   return (
     <div className="col-md-3 mb-3">
-      <div className="card">
+      <div className="card h-100">
         <img className="bd-placeholder-img card-img-top" alt="" src={destination.image}/>
         <div className="card-body">
-            <h4 className="card-title">{destination.name}</h4>
-            <p className="card-text">{destination.text}</p>
-            {/* <p><a className="btn btn-lg btn-primary" href="#">Go!</a></p> */}
+            <h4 className="card-title crop-text-1">{destination.name}</h4>
+            <p className="card-text crop-text-1">{destination.text}</p>
             <Anchor className="btn btn-lg btn-primary" to={'/city/' + destination._id}>Go!</Anchor>
         </div>
       </div>

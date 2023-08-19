@@ -1,5 +1,4 @@
 .background-container {
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-image: url("https://www.cronista.com/files/image/300/300145/5ffe0f8143db2.jpg");
@@ -12,26 +11,24 @@
 }
 
 .welcome-container {
-    text-align: center;
-    padding: 50px;
-    /* background-color: rgba(255, 255, 255, 0.5); */
-    background-color: rgba(152, 235, 223, 0.3);
-    border-radius: 8px;
-    /* box-shadow: 5px 4px 8px rgba(115, 207, 236, 0.5); */
+    /* background-color: rgba(152, 235, 223, 0.3); */
+    background: rgba(24, 24, 16, .2);
+    border-radius: 2em;
+    backdrop-filter: blur(10px);
     margin: auto;
     max-width: 600px;
+    text-align: center;
+    padding: 50px;
 }
 
 h1 {
     font-size: 30px;
-    color: #333;
     margin-bottom: 20px;
 }
 
 p {
     font-size: 18px;
-    /* font-weight: bold; */
-    color: #333;
+    color: aliceblue;
 }
 
 

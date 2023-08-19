@@ -48,11 +48,12 @@ h3 {
 }
 .card {
   border-color: #0081E6;
+  transition: all 0.3s;
 }
 .card:hover{
   border-color: #52AA5E;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px #52AA5E(217,3,104,1) !important;
-  
+  transform: scale(1.05);
 }
 .btn-primary {
   background-color: #0081E6;
