@@ -47,10 +47,10 @@ const Carousel = () => {
     <section className="pt-5 pb-5">
       <div className="container">
         <div className="row">
-            <div className="col-6">
+            <div className="col-6 ps-3">
                 <h3 className="mb-3">Cities</h3>
             </div>
-            <div className="col-6 text-end">
+            <div className="col-6 text-end pe-3">
                 <a className="btn btn-primary mb-3 mr-1" href="#carouselExampleIndicators2" role="button" data-slide="prev" onClick={prev}>
                     <i className="fa fa-arrow-left"></i>
                 </a>
@@ -61,7 +61,7 @@ const Carousel = () => {
             <div className="col-12">
                 <div id="carouselExampleIndicators2" className="carousel slide" data-ride="carousel">
 
-                  <div className="carousel-inner">
+                  <div className="carousel-inner p-2">
                     <div className="carousel-item active">
                       <div className="row">
 
