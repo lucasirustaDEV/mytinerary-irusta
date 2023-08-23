@@ -24,18 +24,29 @@ const Cities = () => {
       })
   },[])
 
-  const handleSearch = (query) => {
+/*   const handleSearch = (query) => {
     const filteredResults = cities.filter(city =>
       city.name.toLowerCase().startsWith(query.toLowerCase())
     )
     setSearchResults(filteredResults)
+  } */
+
+  const handleSearch = (query) => {
+    axios('http://localhost:3000/api/cities/search/' + query.toLowerCase())
+      .then(res => {
+        setSearchResults(res.data.response)
+      })
   }
 
   const handleChange = (event) => {
     //console.log(event.target.value)
     const query = event.target.value
     setSearchTerm(query)
-    handleSearch(query)
+    if (query != ''){     
+      handleSearch(query)
+    } else {
+      setSearchResults(cities)
+    }
   }
 
   const handleInputFocus = () => {
