@@ -13,6 +13,7 @@ const Carousel = () => {
       .then(res => {
         setCities(res.data.response)
       })
+      .catch((err) => console.log(err))
   },[])
 
   const [counter, setCounter] = useState(0);

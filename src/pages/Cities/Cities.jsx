@@ -22,6 +22,7 @@ const Cities = () => {
         setCities(res.data.response)
         setSearchResults(res.data.response)
       })
+      .catch((err) => console.log(err))
   },[])
 
 /*   const handleSearch = (query) => {
@@ -32,21 +33,26 @@ const Cities = () => {
   } */
 
   const handleSearch = (query) => {
-    axios('http://localhost:3000/api/cities/search/' + query.toLowerCase())
+    axios('http://localhost:3000/api/cities/search/' + query.trim().toLowerCase())
       .then(res => {
         setSearchResults(res.data.response)
       })
+      .catch((err) => console.log(err))
   }
 
   const handleChange = (event) => {
     //console.log(event.target.value)
     const query = event.target.value
     setSearchTerm(query)
-    if (query != ''){     
+    if (query.trim() != ''){     
       handleSearch(query)
     } else {
       setSearchResults(cities)
     }
+  }
+
+  const handleClick = () => {
+
   }
 
   const handleInputFocus = () => {
@@ -58,9 +64,9 @@ const Cities = () => {
       <div className="search-city">
         <Banner imageURL={bannerImg} />
         <div className="container col-md-4 mt-3 search-input">
-          <div className="input-group">
-            <input className="form-control py-2 rounded-pill" type="search" placeholder="Search city..." 
-              value={searchTerm} onChange={handleChange} ref={inputRef} onFocus={handleInputFocus}/>
+          <div className="search-group">
+            <input className="search-bar" type="text" placeholder="Search city..." value="" ref={inputRef} onFocus={handleInputFocus}/>
+            <button className="search-button" type="submit" onClick={handleClick}>🔍</button>
           </div>
         </div>
       </div>
