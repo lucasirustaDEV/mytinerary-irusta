@@ -5,6 +5,7 @@ import { useState, useEffect } from "react"
 import axios from 'axios'
 import Banner from '../../components/Banner/Banner.jsx'
 import ItineraryCard from '../../components/Card/ItineraryCard.jsx'
+import NoResults from '../../components/NoResults/NoResults'
 
 const City = () => {
   const params = useParams()
@@ -50,13 +51,7 @@ const City = () => {
         </div>
         <div className='container itinerary mt-3'>
           {itineraries.length === 0 ? (
-            <section className="py-5 text-center container">
-              <div className="row py-lg-5">
-                <div className="col-lg-6 col-md-8 mx-auto">
-                  <h1 className="fw-light">No results found</h1>
-                </div>
-              </div>
-            </section>
+            <NoResults message={'No results found'}/>
           ) : (
             itineraries.map((iti, index) => (
             <ItineraryCard key={index} itinerary={iti} />
