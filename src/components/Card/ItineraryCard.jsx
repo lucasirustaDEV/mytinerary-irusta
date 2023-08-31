@@ -19,26 +19,40 @@ const ItineraryCard = ({ itinerary }) => {
   }
 
   return (
-    <div className="card-horizontal">
-      <div className="card-content">
-        <h3>{itinerary.description}</h3>
-        <Price price={itinerary.price}/>
-        <p>Duration: {itinerary.duration}</p>
-        <div className={`like-button ${liked ? 'liked' : ''}`}>
-          <button onClick={toggleLike} className="like-button-icon">
-            {liked ? '❤️' : '🤍'}
-          </button>
-          <span className="like-button-text">{liked ? itinerary.likes + 1 : itinerary.likes }</span>
+    <section className='container mb-3'>
+      <div className="card itinerary-card">
+        <h5 className="card-header text-center">{itinerary.title}</h5>
+        <div className="card-body">
+          <div className='itinerary-content'>
+            <div className='profile'>
+              <img className="rounded-circle" alt={itinerary.provider} src={itinerary.profile_pic} />
+              <p className="card-text">{itinerary.provider}</p>
+            </div>
+            <p className="card-text">{itinerary.description}.</p>
+          </div>
+          <div className='d-flex justify-content-between align-items-center itinerary-crt'>
+            <Hashtag hashtags={itinerary.hashtag} />
+            <p className='align-self-center ms-3'>Duration: {itinerary.duration}</p>
+            <Price price={itinerary.price} />
+            <div className={`like-button ${liked ? 'liked' : ''}`}>
+              <button onClick={toggleLike} className="like-button-icon">
+                {liked ? '❤️' : '🤍'}
+              </button>
+              <span className="like-button-text">{liked ? itinerary.likes + 1 : itinerary.likes}</span>
+            </div>
+          </div>
+          <div className='text-center'>
+            {showMore && (
+              <NoResults message={'Under Construction'} />
+            )}
+            <button className="btn btn-primary" type="button" onClick={toggleMoreInfo}>
+              {showMore ? 'Show less' : 'Show more'}
+            </button>
+          </div>
         </div>
-        <Hashtag hashtags={itinerary.hashtag}/>
-        {showMore && (
-          <NoResults message={'Under Construction'}/>
-        )}
-        <button className="btn btn-primary" type="button" onClick={toggleMoreInfo}>
-          {showMore ? 'Ver menos' : 'Ver más'}
-        </button>
       </div>
-    </div>
+    </section>
+
   )
   
 }

@@ -22,3 +22,33 @@
 .liked .like-button-icon {
     background-color: #dc3545;
 }
+
+.itinerary-card {
+    background-color: aqua!important;
+}
+
+.itinerary-content {
+    display: flex;
+    align-items: center;
+  }
+  
+  .profile{
+    text-align: center;
+  }
+  
+  img.rounded-circle {
+    width: 80px; 
+    height: 80px;
+    border-radius: 50%; 
+    margin-right: 10px;
+  }
+  
+  .itinerary-content p {
+    margin: 20px;
+  }
+  
+  .itinerary-content .card-text {
+    
+    margin-top: 5px;
+  }
+  

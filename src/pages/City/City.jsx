@@ -50,6 +50,7 @@ const City = () => {
           </div>
         </div>
         <div className='container itinerary mt-3'>
+          
           {itineraries.length === 0 ? (
             <NoResults message={'No results found'}/>
           ) : (

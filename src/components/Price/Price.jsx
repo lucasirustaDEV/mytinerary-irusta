@@ -18,8 +18,8 @@ const Price = ({ price }) => {
 
     return (
         <div className="dollar-signs">
-            <h3>Price: </h3>
-            {signs}
+            <h3>Price: {signs} </h3>
+            
         </div>
     )
 }

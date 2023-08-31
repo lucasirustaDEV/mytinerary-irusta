@@ -3,36 +3,43 @@ import CityCard from '../Card/CityCard'
 //import cities from "../../data/cities.js"
 import { useState, useEffect } from "react"
 import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux'
+import { getAllCitiesAsync } from '../../redux/actions/citiesActions'
 
 const Carousel = () => {
 
-  const [cities, setCities] = useState([])
+  //const [cities, setCities] = useState([])
+
+  const dispatch = useDispatch()
+  const {cities, loading} = useSelector(store => store.citiesReducers)
 
   useEffect(()=>{
-    axios('http://localhost:3000/api/cities/page/?page=1&limit=12')
+    if (cities.length === 0){
+      dispatch(getAllCitiesAsync())
+    }
+/*     axios('http://localhost:3000/api/cities/page/?page=1&limit=12')
       .then(res => {
         setCities(res.data.response)
       })
-      .catch((err) => console.log(err))
+      .catch((err) => console.log(err)) */
   },[])
 
   const [counter, setCounter] = useState(0);
 
   const prev = () => {
-    if (counter == 0) {
-      setCounter( (cities.length/4)-1);
+    if (counter === 0) {
+      setCounter( Math.trunc((cities.length/4))-1);
     } else {
       setCounter(counter - 1);
     }
   };
 
   const next = () => {
-    if (counter == (cities.length/4)-1) {
+    if (counter === Math.trunc((cities.length/4))-1) {
       setCounter(0);
     } else {
       setCounter(counter + 1);
     }
-/*     console.log(counter) */
   };
 
   useEffect(() => {
