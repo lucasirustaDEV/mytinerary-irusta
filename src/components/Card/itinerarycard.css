@@ -1,54 +1,50 @@
+.itinerary-card {
+  background-color: #DDF1F8;
+}
+
 .like-button {
-    display: inline-block;
-    margin: 10px;
-    font-size: 16px;
+  /* display: inline-block; */
+  margin: 10px;
 }
 
 .like-button-icon {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 20px;
-    padding: 5px 10px;
-    margin-right: 5px;
-    cursor: pointer;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 5px 10px;
+  margin-right: 5px;
+  cursor: pointer;
 }
 
 .like-button-text {
-    font-weight: bold;
     color: #333;
 }
 
-.liked .like-button-icon {
-    background-color: #dc3545;
-}
-
-.itinerary-card {
-    background-color: aqua!important;
+.itinerary-crt p {
+  color: #333;   
 }
 
 .itinerary-content {
-    display: flex;
-    align-items: center;
-  }
+  display: flex;
+  align-items: center;
+}
   
-  .profile{
-    text-align: center;
-  }
+.profile{
+  text-align: center;
+}
   
-  img.rounded-circle {
-    width: 80px; 
-    height: 80px;
-    border-radius: 50%; 
-    margin-right: 10px;
-  }
+img.rounded-circle {
+  width: 80px; 
+  height: 80px;
+  border-radius: 50%; 
+  margin-right: 10px;
+}
   
-  .itinerary-content p {
-    margin: 20px;
-  }
+.itinerary-content p {
+  margin: 20px;
+}
   
-  .itinerary-content .card-text {
-    
-    margin-top: 5px;
-  }
+.itinerary-content .card-text {    
+  margin-top: 5px;
+}
   

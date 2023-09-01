@@ -6,6 +6,7 @@ import axios from 'axios'
 import Banner from '../../components/Banner/Banner.jsx'
 import ItineraryCard from '../../components/Card/ItineraryCard.jsx'
 import NoResults from '../../components/NoResults/NoResults'
+import CtaButton from '../../components/CtaButton/CtaButton'
 
 const City = () => {
   const params = useParams()
@@ -42,15 +43,18 @@ const City = () => {
             <div className="row py-lg-4 mask-custom">
               <div className="col-lg-8 col-md-10 mx-auto">
                 <h1 className="fw-light">{city.name}</h1>
-                <h4 className="fw-light">Culture: {city.text}</h4>
-                <h4 className="fw-light">Country: {city.country}</h4>
-                <h4 className="fw-light">Currency: {city.currency}</h4>
+                <div className="details">
+                  <h5 className="fw-light">{city.text}</h5>
+                  <div className="details-row d-flex justify-content-between mt-3">
+                    <h6 className="fw-light">Country: {city.country}</h6>
+                    <h6 className="fw-light">Currency: {city.currency}</h6>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div className='container itinerary mt-3'>
-          
+        <div className='container itinerary mt-3'>         
           {itineraries.length === 0 ? (
             <NoResults message={'No results found'}/>
           ) : (
@@ -58,6 +62,9 @@ const City = () => {
             <ItineraryCard key={index} itinerary={iti} />
             ))
           )}
+        </div>
+        <div className='container text-center'>
+          <CtaButton title="Back to Cities!" slink="/cities"/>
         </div>
       </section>
     </>

@@ -19,12 +19,12 @@ const ItineraryCard = ({ itinerary }) => {
   }
 
   return (
-    <section className='container mb-3'>
+    <section className='mb-3'>
       <div className="card itinerary-card">
         <h5 className="card-header text-center">{itinerary.title}</h5>
-        <div className="card-body">
+        <div className="card-body p-0">
           <div className='itinerary-content'>
-            <div className='profile'>
+            <div className='profile p-1'>
               <img className="rounded-circle" alt={itinerary.provider} src={itinerary.profile_pic} />
               <p className="card-text">{itinerary.provider}</p>
             </div>
@@ -35,13 +35,13 @@ const ItineraryCard = ({ itinerary }) => {
             <p className='align-self-center ms-3'>Duration: {itinerary.duration}</p>
             <Price price={itinerary.price} />
             <div className={`like-button ${liked ? 'liked' : ''}`}>
+              <span className="like-button-text">{liked ? itinerary.likes + 1 : itinerary.likes}</span>
               <button onClick={toggleLike} className="like-button-icon">
                 {liked ? '❤️' : '🤍'}
-              </button>
-              <span className="like-button-text">{liked ? itinerary.likes + 1 : itinerary.likes}</span>
+              </button>              
             </div>
           </div>
-          <div className='text-center'>
+          <div className='card-footer text-center'>
             {showMore && (
               <NoResults message={'Under Construction'} />
             )}
