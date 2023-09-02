@@ -1,23 +1,22 @@
 .hashtag-list {
-    margin: 5px;
+    margin-top: 0px;
+    display: flex;
+    align-items: center;
 }
   
 .hashtag-list-ul {
     list-style-type: none;
-    padding: 5px;
+    padding: 0px;
     display: flex;
     flex-wrap: wrap;
+    font-size: 15px;
+    margin-bottom: 0px;
 }
 
 .hashtag-item {
-    background-color: #007bff; 
+    background-color: #68b672; 
     color: #fff; 
     border-radius: 20px;
-    padding: 5px 5px;
+    padding: 5px 10px;
     margin: 5px;
-    cursor: pointer;
-}
-
-.hashtag-item:hover {
-    background-color:  #52AA5E; 
 }

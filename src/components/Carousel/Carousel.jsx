@@ -10,7 +10,7 @@ const Carousel = () => {
   const {cities, loading} = useSelector(store => store.citiesReducers)
 
   useEffect(()=>{
-    if (cities.length === 0){
+    if (cities.length < 12){
       dispatch(getAllCitiesAsync())
     }
   },[])

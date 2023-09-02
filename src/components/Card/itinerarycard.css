@@ -2,26 +2,39 @@
   background-color: #DDF1F8;
 }
 
+.itinerary-crt {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 .like-button {
-  /* display: inline-block; */
+  display: inline-block;
   margin: 10px;
+  margin-top: 0;
+
+  background-color: #68b672; 
+  color: #fff; 
+  border-radius: 20px;
+  padding: 5px 5px;
+  margin: 5px;
 }
 
 .like-button-icon {
-  color: #fff;
   border: none;
-  border-radius: 20px;
-  padding: 5px 10px;
   margin-right: 5px;
+  margin-left: 5px;
   cursor: pointer;
+  background-color: #68b672; 
 }
 
 .like-button-text {
-    color: #333;
+    color: #fff;
+    margin-left: 10px;
 }
 
 .itinerary-crt p {
-  color: #333;   
+  /* color: #333;   */
+  font-size: 15px; 
 }
 
 .itinerary-content {
@@ -31,8 +44,14 @@
   
 .profile{
   text-align: center;
+  margin-top: 5px;
 }
-  
+
+.rounded-circle {
+overflow: hidden;
+box-shadow: 0 0 10px #68b672;
+}
+
 img.rounded-circle {
   width: 80px; 
   height: 80px;
@@ -46,5 +65,13 @@ img.rounded-circle {
   
 .itinerary-content .card-text {    
   margin-top: 5px;
+}
+
+.duration-item {
+  background-color: #68b672; 
+  color: #fff; 
+  border-radius: 20px;
+  padding: 5px 10px;
+  margin: 5px;
 }
   

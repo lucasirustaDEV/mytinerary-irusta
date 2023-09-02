@@ -4,18 +4,32 @@ import NoResults from '../../components/NoResults/NoResults'
 import './itinerarycard.css'
 import Hashtag from '../Hashtag/Hashtag'
 import Price from '../Price/Price'
+import { useDispatch, useSelector } from 'react-redux'
+import { addToLikes, removeToLikes } from '../../redux/actions/citiesActions'
 
 const ItineraryCard = ({ itinerary }) => {
-  const [showMore, setShowMore] = useState(false)
 
+  const dispatch = useDispatch()
+  const { likes } = useSelector(store => store.citiesReducers)
+
+  const [showMore, setShowMore] = useState(false)
   const [liked, setLiked] = useState(false);
 
   const toggleMoreInfo = () => {
     setShowMore(!showMore)
   }
 
+  useEffect(() => {
+    setLiked(likes.includes(itinerary._id))
+  }, [likes, itinerary._id])
+
   const toggleLike = () => {
-    setLiked(!liked);
+    setLiked(!liked)
+    if(!liked){
+      dispatch(addToLikes(itinerary._id))
+    }else {
+      dispatch(removeToLikes(itinerary._id))
+    }
   }
 
   return (
@@ -32,7 +46,7 @@ const ItineraryCard = ({ itinerary }) => {
           </div>
           <div className='d-flex justify-content-between align-items-center itinerary-crt'>
             <Hashtag hashtags={itinerary.hashtag} />
-            <p className='align-self-center ms-3'>Duration: {itinerary.duration}</p>
+            <p className='align-self-center duration-item'>Duration: {itinerary.duration}</p>
             <Price price={itinerary.price} />
             <div className={`like-button ${liked ? 'liked' : ''}`}>
               <span className="like-button-text">{liked ? itinerary.likes + 1 : itinerary.likes}</span>

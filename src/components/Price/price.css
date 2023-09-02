@@ -3,16 +3,23 @@
 }
 
 .dollar-sign {
-    color: #333;
+    color: #fff;
     margin-right: 5px;
-    font-weight: lighter; 
+    font-size: 15px; 
+    /* font-weight: lighter;  */
 }
 
-.dollar-signs p {
-    color: #333;    
+.dollar-signs p { 
+    font-size: 15px; 
+    background-color: #68b672; 
+    color: #fff; 
+    border-radius: 20px;
+    padding: 5px 10px;
+    margin: 5px;
 }
 
 .highlight {
     color: #dc3545;
     font-weight: bold;
+    font-size: 15px;
 }

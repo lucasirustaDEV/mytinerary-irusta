@@ -2,36 +2,23 @@ import React from 'react'
 import './city.css'
 import { useParams } from 'react-router-dom'
 import { useState, useEffect } from "react"
-import axios from 'axios'
 import Banner from '../../components/Banner/Banner.jsx'
 import ItineraryCard from '../../components/Card/ItineraryCard.jsx'
 import NoResults from '../../components/NoResults/NoResults'
 import CtaButton from '../../components/CtaButton/CtaButton'
+import { useDispatch, useSelector } from 'react-redux'
+import { getOneCityAsync, getItinerariesByCityIdAsync } from '../../redux/actions/citiesActions'
 
 const City = () => {
   const params = useParams()
   const cityId = params.id
 
-  const [city, setCity] = useState([])
-  const [itineraries, setItineraries] = useState([])
+  const dispatch = useDispatch()
+  const {city, loading, itineraries} = useSelector(store => store.citiesReducers)
 
   useEffect(() => {
-    axios(`http://localhost:3000/api/cities/${cityId}`)
-      .then(res => {
-        setCity(res.data.response);
-      })
-      .catch(err => {
-        console.error(err);
-      });
-  
-      axios(`http://localhost:3000/api/itineraries?city=${cityId}`)
-      .then(resp => {
-        setItineraries(resp.data.response);
-        console.log(itineraries)
-      })
-      .catch(err => {
-        console.error(err);
-      });
+    dispatch(getOneCityAsync(cityId))
+    dispatch(getItinerariesByCityIdAsync(cityId))
   }, [cityId]);
 
   return (
@@ -54,8 +41,11 @@ const City = () => {
             </div>
           </div>
         </div>
-        <div className='container itinerary mt-3'>         
-          {itineraries.length === 0 ? (
+        <div className='container itinerary mt-3'>  
+          <h3 className="mb-3">MyTineraries</h3>    
+          {loading === true ? (
+            <NoResults message={'Loading...'} />
+          ) : itineraries.length === 0 ? (
             <NoResults message={'No results found'}/>
           ) : (
             itineraries.map((iti, index) => (
