@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import citiesReducers from './reducers/citiesReducers'
+import authReducers from './reducers/authReducers';
 
 const store = configureStore({
   reducer: {
-    citiesReducers: citiesReducers
+    citiesReducers: citiesReducers,
+    authReducers: authReducers
   },
 });
 

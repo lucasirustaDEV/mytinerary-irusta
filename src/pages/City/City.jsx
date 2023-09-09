@@ -46,7 +46,7 @@ const City = () => {
           {loading === true ? (
             <NoResults message={'Loading...'} />
           ) : itineraries.length === 0 ? (
-            <NoResults message={'No results found'}/>
+            <NoResults message={'Under Construction'}/>
           ) : (
             itineraries.map((iti, index) => (
             <ItineraryCard key={index} itinerary={iti} />

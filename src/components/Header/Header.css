@@ -2,3 +2,11 @@ a {
     color: whitesmoke !important;
 }
 
+.profile-circle {
+    width: 26px; 
+    height: 26px;
+    border-radius: 50%; 
+    margin-right: 10px;
+    color: white;
+  }
+    
