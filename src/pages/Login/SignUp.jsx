@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import './signUp.css'
-import { Link as Anchor } from "react-router-dom"
+import { Link as Anchor, useNavigate } from "react-router-dom"
 import axios from 'axios'
 import { GoogleOAuthProvider, GoogleLogin  } from '@react-oauth/google'
 import jwtDecode from 'jwt-decode'
 import GButton from '../../components/GButton/GButton'
 import { useDispatch } from 'react-redux'
-import { login } from '../../redux/actions/authActions'
+import { login, signUp } from '../../redux/actions/authActions'
+import Banner from '../../components/Banner/Banner'
 
 
 const SignUp = () => {
+
+    const bannerImg = "https://images.unsplash.com/photo-1610995195985-7229a1409d4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
 
     const dispatch = useDispatch()
     
@@ -29,7 +32,6 @@ const SignUp = () => {
         country: "",
         email: "",
         password: "",
-        repassword: "",
         terms: false
     })
 
@@ -39,37 +41,47 @@ const SignUp = () => {
         })
     }
 
-    const handleSubmit = async (e) => {
-        //console.log(userData)
+    const navigate = useNavigate()
+
+    const handleSubmit = (e) => {
         e.preventDefault()
         const user = {...userData}
-        if (user.terms) {
-            delete user.terms
-            delete user.repassword
-            try {
-                const res = await axios.post('http://localhost:3000/api/auth/up', user)
+        delete user.terms
+        console.log(user)
+        dispatch(signUp(user))
+            .then((res) => {
                 console.log(res)
-                dispatch(login(res.data))                
-            } catch (error) {
-                console.log(error)
-            }
-        }
-    }
+                if(res.payload.success) {
+                alert("Welcome " + res.payload.userData.name)
+                navigate('/')
+                } else {
+                    alert("Error: " + res.payload.message)
+                    navigate('/signin')
+                }
+            })
+            .catch((error) => {
+                alert("An error occurred: " + error.message);
+            })
+      }
 
     const handleSubmitGoogle = async (data) => {
-        //e.preventDefault()
-        const user = { ...data }
-        if (user.terms) {
-            delete user.terms
-            delete user.repassword
-            try {
-                const res = await axios.post('http://localhost:3000/api/auth/up', user)
+        const user = {...data}
+        delete user.terms
+        console.log(user)
+        dispatch(signUp(user))
+            .then((res) => {
                 console.log(res)
-                dispatch(login(res.data))                
-            } catch (error) {
-                console.log(error)
-            }
-        }
+                if(res.payload.success) {
+                alert("Welcome " + res.payload.userData.name)
+                navigate('/')
+                } else {
+                    alert("Error: " + res.payload.message)
+                    navigate('/signin')
+                }
+            })
+            .catch((error) => {
+                alert("An error occurred: " + error.message);
+            })
     }
 
     const [countries, setCountries] = useState([])
@@ -83,82 +95,85 @@ const SignUp = () => {
     },[])
 
   return (
-    <section className='container'>
-        <div className='card form-card'>
-            <form className="row g-3 p-3" onSubmit={handleSubmit}>
-                <div className="col-md-6">
-                    <label className="form-label">Name</label>
-                    <input type="text" className="form-control" name="name" onChange={handleDataChange} value={userData.name}/>
+    <section>
+        <div className='login-container'>
+        <Banner imageURL={bannerImg} height="130vh" />
+        <div className="py-3 text-center container text-container">
+            <div className="row py-lg-4 mask-custom">
+                <div className="col-lg-8 col-md-10 mx-auto">
+                    <h1 className="fw-light mt-3">Sign Up</h1>
+                    <form className="p-3">
+                        <div className="col-md mb-3">
+                            <input type="text" className="form-control" name="name" placeholder="Name" onChange={handleDataChange} value={userData.name} />
+                        </div>
+                        <div className="col-md mb-3">
+                            <input type="text" className="form-control" name="surname" placeholder="Surname" onChange={handleDataChange} value={userData.surname} />
+                        </div>
+                        <div className="col-md mb-3">
+                            <input type="url" className="form-control" name="profile_pic" placeholder="Enter your profile pic URL" onChange={handleDataChange} value={userData.profile_pic} />
+                        </div>
+                        <div className="row align-items-center mb-3">
+                            <div className="col-md-5">
+                                <label className="form-label mb-0">Confirm your age: </label>
+                            </div>
+                            <div className="col-md-7">
+                                <input type="date" className="form-control" name="birth_date" value={userData.birth_date} onChange={handleDataChange} />
+                            </div>
+                        </div>
+                        <div className="col-md mb-3">
+                            <select name="country" className="form-select" onChange={handleDataChange} value={userData.country}>
+                                <option>Select your country...</option>
+                                {countries.map(country => (
+                                    <option key={country._id} value={country._id}>
+                                        {country.name}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="col-md mb-3">
+                            <input type="email" className="form-control" name="email" placeholder="Email" onChange={handleDataChange} value={userData.email} />
+                        </div>
+                        <div className="col-md mb-3">
+                            <input type="password" className="form-control" name="password" placeholder="Password" onChange={handleDataChange} value={userData.password} />
+                        </div>
+                        <div className="col-12 mb-3">
+                            <div className="form-check d-flex align-items-center">
+                                <input className="form-check-input me-1" type="checkbox" name="terms" onChange={handleDataChange} value={userData.terms} />
+                                <label className="form-check-label mb-0">I agree to the Terms and Conditions</label>
+                            </div>
+                        </div>
+                        <div className="col-md text-center mt-3 mb-3">
+                            <button type="submit" className="btn btn-primary btn-block w-100" onClick={handleSubmit}>Sign Up</button>
+                        </div>
+                        <p className="mt-4 mb-0 leading-normal text-sm">You have an account? <Anchor className="font-bold text-slate-700 anchor" to="/signin">Sign In</Anchor></p>
+                        <p className="mt-4 mb-0 leading-normal text-sm mb-3">Or Sign up with...</p>
+                          <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_ID}>
+{/*                               <GoogleLogin
+                                  onSuccess={credentialResponse => {
+                                      console.log(credentialResponse)
+                                      const infoGoogleUser = jwtDecode(credentialResponse.credential)
+                                      console.log(infoGoogleUser)
+                                      handleSubmitGoogle({
+                                          name: infoGoogleUser.given_name,
+                                          surname: infoGoogleUser.family_name,
+                                          profile_pic: infoGoogleUser.picture,
+                                          birth_date: '1980-01-01',
+                                          country: "64fa18ece04801ae6c4d571d",
+                                          email: infoGoogleUser.email,
+                                          password: import.meta.env.VITE_GOOGLE_PW,
+                                          terms: true
+                                      })
+                                  }}
+                                  onError={() => {
+                                      console.log('Login Failed')
+                                  }}
+                              /> */}
+                              <GButton fn={handleSubmitGoogle} textButton="up"/>
+                          </GoogleOAuthProvider>
+                    </form>
                 </div>
-                <div className="col-md-6">
-                    <label className="form-label">Surname</label>
-                    <input type="text" className="form-control" name="surname" onChange={handleDataChange} value={userData.surname}/>
-                </div>
-                <div className="col-md-6">
-                    <label className="form-label">Birthdate</label>
-                    <input type="date" className="form-control" name="birth_date"  value={userData.birth_date} onChange={handleDataChange}/>
-                </div>
-                  <div className="col-md-6">
-                      <label htmlFor="country" className="form-label">Country</label>
-                      <select name="country" className="form-select" onChange={handleDataChange} value={userData.country}>
-                          <option>Choose...</option>
-                          {countries.map(country => (
-                              <option key={country._id} value={country._id}>
-                                  {country.name}
-                              </option>
-                          ))}
-                      </select>
-                  </div>
-                <div className="col-12">
-                    <label className="form-label">Email</label>
-                    <input type="email" className="form-control" name="email" placeholder="" onChange={handleDataChange} value={userData.email}/>
-                </div>
-                <div className="col-md-6">
-                    <label className="form-label">Password</label>
-                    <input type="password" className="form-control" name="password" onChange={handleDataChange} value={userData.password}/>
-                </div>
-                <div className="col-md-6">
-                    <label className="form-label">Re enter Password</label>
-                    <input type="password" className="form-control" name="repassword" onChange={handleDataChange} value={userData.repassword}/>
-                </div>
-                <div className="col-12">
-                    <div className="form-check">
-                    <input className="form-check-input" type="checkbox" name="terms" onChange={handleDataChange} value={userData.terms}/>
-                    <label className="form-check-label" >
-                        I agree the Terms and Conditions
-                    </label>
-                    </div>
-                </div>
-                <div className="col text-center">
-                    <button type="submit" className="btn btn-primary btn-block">Register</button>
-                </div>
-                
-                <p className="mt-4 mb-0 leading-normal text-sm">Already have an account? <Anchor className="font-bold text-slate-700" to="/signin">Sign in</Anchor></p>
-                <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_ID}>
-                    <GoogleLogin
-                      onSuccess={credentialResponse => {
-                        console.log(credentialResponse)
-                        const infoGoogleUser = jwtDecode(credentialResponse.credential)
-                        console.log(infoGoogleUser)
-                        handleSubmitGoogle({
-                            name: infoGoogleUser.given_name,
-                            surname: infoGoogleUser.family_name,
-                            profile_pic: infoGoogleUser.picture,
-                            birth_date: '1980-01-01',
-                            country: "64fa18ece04801ae6c4d571d",
-                            email: infoGoogleUser.email,
-                            password: "Aa11.",
-                            repassword: "Aa11.",
-                            terms: true
-                        })
-                      }}
-                      onError={() => {
-                        console.log('Login Failed')
-                      }}
-                    />
-                    <GButton fn={handleSubmitGoogle}/>
-                </GoogleOAuthProvider>
-            </form>
+            </div>
+        </div>
         </div>
     </section>
   )

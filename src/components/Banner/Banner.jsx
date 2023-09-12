@@ -1,9 +1,10 @@
 import React from 'react'
 import './banner.css'
 
-const Banner = ({ imageURL }) => {
+const Banner = ({ imageURL, height }) => {
     const bannerImage = {
         backgroundImage: `url(${imageURL})`,
+        height: height,
     };
 
     return (

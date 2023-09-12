@@ -36,7 +36,7 @@ const Cities = () => {
   return (
     <>
       <div className="search-city">
-        <Banner imageURL={bannerImg} />
+        <Banner imageURL={bannerImg} height="75vh"/>
         <div className="container col-md-4 mt-3 search-input">
           <div className="search-group">
             <input className="form-control py-2 rounded-pill" type="search" placeholder="Search city..." 

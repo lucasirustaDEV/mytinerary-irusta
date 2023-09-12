@@ -25,7 +25,7 @@ const City = () => {
     <>
       <section>
         <div className="city">
-          <Banner imageURL={city.image} />
+          <Banner imageURL={city.image} height="75vh" />
           <div className="py-5 text-center container text-container">
             <div className="row py-lg-4 mask-custom">
               <div className="col-lg-8 col-md-10 mx-auto">

@@ -1,10 +1,22 @@
-.signup {
-    background-color: #8fc4b7;
-}
-.image-top {
-    border-top-left-radius: .3rem; 
-    border-top-right-radius: .3rem;
-}
-.form-card {
-    background-color: #8fc4b7;
+.anchor {
+    background-color: #68b672; 
+    color: #fff; 
+    border-radius: 20px;
+    padding: 5px 15px;
+    margin: 10px;
+  }
+
+  @media (max-width: 768px) {
+    .text-container {
+        top: 55%;
+    }
+  }
+/*   @media (min-width: 901px) {
+    .text-container {
+      top: 35%;
+    }
+} */
+
+  .login-container {
+    position: relative;
 }

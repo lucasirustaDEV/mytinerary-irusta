@@ -2,27 +2,30 @@ import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { LS } from "../../data/LocalStorage/LS";
 
-const login = createAction('login', (credentials) => {
-    const reducerData = {
-        user: credentials.userData,
-        token: credentials.token,
-    }
-    LS.set('token', credentials.token)
-    return {
-        payload: reducerData
-    }
-})
-const signUp = createAction('signup', (credentials) => {
-    const reducerData = {
-        user: credentials.userData,
-        token: credentials.token,
-    }
-    return {
-        payload: reducerData
+const login = createAsyncThunk('login', async ( body,  { rejectWithValue } ) => {
+    try {
+        const res = await axios.post('http://localhost:3000/api/auth/in', body)
+        LS.set('token', res.data.token)
+        return res.data
+    } catch (error) {
+        console.log(error)     
+        return rejectWithValue(error.response.data) 
     }
 })
-const authenticate = createAsyncThunk('authenticate', async() => {
 
+
+const signUp = createAsyncThunk('signup', async ( body,  { rejectWithValue } ) => {
+    try {
+        const res = await axios.post('http://localhost:3000/api/auth/up', body)
+        LS.set('token', res.data.token)
+        return res.data        
+    } catch (error) {
+        console.log(error)
+        return rejectWithValue(error.response.data)       
+    }
+})
+
+const authenticate = createAsyncThunk('authenticate', async() => {
     try {
         const token = LS.getText('token')
         console.log(token)
@@ -31,15 +34,18 @@ const authenticate = createAsyncThunk('authenticate', async() => {
                 Authorization: 'Bearer ' + token
             }
         })
-        const reducerData = {
-            user: data.userData,
-            token: token
-        }
-        return reducerData        
+        return data   
     } catch (error) {
-        console.log(error)
+        LS.rm('token')
+        throw error
     }
-
 })
 
-export { login, signUp, authenticate }
+const logOut = createAction('logout', () => {
+    LS.rm('token')
+    return {
+        payload : null
+    }
+})
+
+export { login, signUp, authenticate, logOut }
