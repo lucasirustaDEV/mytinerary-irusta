@@ -34,7 +34,7 @@ const authenticate = createAsyncThunk('authenticate', async() => {
                 Authorization: 'Bearer ' + token
             }
         })
-        return data   
+        return data           
     } catch (error) {
         LS.rm('token')
         throw error

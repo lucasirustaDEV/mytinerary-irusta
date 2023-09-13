@@ -5,15 +5,35 @@ import sitelinks from "../../data/sitelinks.js"
 import { Link as Anchor } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from '../../redux/actions/authActions';
+import Swal from 'sweetalert2';
 
 const Header = () => {
 
   const { user } = useSelector(store => store.authReducers)
 
   const dispatch = useDispatch()
+  
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: 'btn btn-success swal-btn',
+      cancelButton: 'btn btn-danger swal-btn'
+    },
+    buttonsStyling: false
+  })
 
   const handleSignOut = () => {
-    dispatch(logOut())
+    swalWithBootstrapButtons.fire({
+      title: 'Are you sure to Sign out?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+          dispatch(logOut())
+      } 
+    })
   }
 
   return (
