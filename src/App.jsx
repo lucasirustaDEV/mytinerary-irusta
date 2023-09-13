@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { authenticate } from './redux/actions/authActions';
 import { LS } from './data/LocalStorage/LS';
 import { toast } from 'react-toastify';
+import ProtectedRouter from './pages/Layouts/ProtectedRouter';
 
 const router = createBrowserRouter([
   {
@@ -31,11 +32,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/signin',
-        element: <SignIn />
+        element: <ProtectedRouter> <SignIn /> </ProtectedRouter> 
       },
       {
         path: '/signup',
-        element: <SignUp />
+        element: <ProtectedRouter> <SignUp /> </ProtectedRouter>
       },
       {
         path: '*',

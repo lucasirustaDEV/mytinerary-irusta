@@ -49,7 +49,7 @@ const ItineraryCard = ({ itinerary }) => {
             <p className='align-self-center duration-item'>Duration: {itinerary.duration}</p>
             <Price price={itinerary.price} />
             <div className={`like-button ${liked ? 'liked' : ''}`}>
-              <span className="like-button-text">{liked ? itinerary.likes + 1 : itinerary.likes}</span>
+              <span className="like-button-text">{liked ? 0 + 1 : 0 }</span>
               <button onClick={toggleLike} className="like-button-icon">
                 {liked ? '❤️' : '🤍'}
               </button>              

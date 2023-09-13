@@ -28,12 +28,14 @@ const signUp = createAsyncThunk('signup', async ( body,  { rejectWithValue } ) =
 const authenticate = createAsyncThunk('authenticate', async() => {
     try {
         const token = LS.getText('token')
-        console.log(token)
+        //console.log(token)
         const {data} = await axios.get('http://localhost:3000/api/auth/token', {
             headers: {
                 Authorization: 'Bearer ' + token
             }
         })
+        //console.log(data)
+        data.token = token
         return data           
     } catch (error) {
         LS.rm('token')
