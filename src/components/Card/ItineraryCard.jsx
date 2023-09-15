@@ -6,11 +6,13 @@ import Hashtag from '../Hashtag/Hashtag'
 import Price from '../Price/Price'
 import { useDispatch, useSelector } from 'react-redux'
 import { addToLikes, removeToLikes } from '../../redux/actions/citiesActions'
+import { toast } from 'react-toastify'
 
 const ItineraryCard = ({ itinerary }) => {
 
   const dispatch = useDispatch()
   const { likes } = useSelector(store => store.citiesReducers)
+  const { user } = useSelector(store => store.authReducers)
 
   const [showMore, setShowMore] = useState(false)
   const [liked, setLiked] = useState(false);
@@ -32,6 +34,10 @@ const ItineraryCard = ({ itinerary }) => {
     }
   }
 
+  const advertLogin = () => {
+    toast.warn("You have to sign in to like")
+  }
+
   return (
     <section className='mb-3'>
       <div className="card itinerary-card">
@@ -39,8 +45,8 @@ const ItineraryCard = ({ itinerary }) => {
         <div className="card-body p-0">
           <div className='itinerary-content'>
             <div className='profile p-1'>
-              <img className="rounded-circle" alt={itinerary.provider} src={itinerary.profile_pic} />
-              <p className="card-text">{itinerary.provider}</p>
+              <img className="rounded-circle" alt={itinerary.provider.name} src={itinerary.provider.profile_pic} />
+              <p className="card-text">{itinerary.provider.name} {itinerary.provider.surname}</p>
             </div>
             <p className="card-text">{itinerary.description}.</p>
           </div>
@@ -49,10 +55,10 @@ const ItineraryCard = ({ itinerary }) => {
             <p className='align-self-center duration-item'>Duration: {itinerary.duration}</p>
             <Price price={itinerary.price} />
             <div className={`like-button ${liked ? 'liked' : ''}`}>
-              <span className="like-button-text">{liked ? 0 + 1 : 0 }</span>
-              <button onClick={toggleLike} className="like-button-icon">
+              <span className="like-button-text">{liked ? itinerary.likes + 1 : itinerary.likes }</span>
+              <button onClick={() => user.name ? toggleLike() : advertLogin()} className="like-button-icon">
                 {liked ? '❤️' : '🤍'}
-              </button>              
+              </button>          
             </div>
           </div>
           <div className='card-footer text-center'>

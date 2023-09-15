@@ -33,8 +33,12 @@ const City = () => {
                 <div className="details">
                   <h5 className="fw-light">{city.text}</h5>
                   <div className="details-row d-flex justify-content-between mt-3">
-                    <h6 className="fw-light">Country: {city.country}</h6>
-                    <h6 className="fw-light">Currency: {city.currency}</h6>
+                    {city.country && (
+                    <>
+                      <h6 className="fw-light">Country: {city.country.name}</h6>
+                      <h6 className="fw-light">Currency: {city.country.currency}</h6>
+                    </>
+                    )}
                   </div>
                 </div>
               </div>
